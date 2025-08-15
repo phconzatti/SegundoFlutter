@@ -32,6 +32,18 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Snack Bar"),
+                      duration: Duration(seconds: 5),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+                child: Text('Open Snackbar'),
+              ),
               DropdownButton(
                 value: menuItem,
                 items: [
@@ -105,14 +117,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   width: double.infinity,
                   color: Colors.white12,
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  foregroundColor: Colors.white,
-                ),
-                child: Text('Click me'),
               ),
               FilledButton(onPressed: () {}, child: Text('Click me')),
               TextButton(onPressed: () {}, child: Text('Click me')),
