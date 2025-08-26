@@ -3,7 +3,9 @@ import 'package:flutter_application_1/views/widget_tree.dart';
 import 'package:flutter_application_1/views/widgets/hero_widget.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.title});
+
+  final String title;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -12,6 +14,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController controllerEmail = TextEditingController();
   TextEditingController controllerPassword = TextEditingController();
+  String confirmedEmail = '123';
+  String confirmedPw = '456';
 
   @override
   void dispose() {
@@ -24,54 +28,69 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            HeroWidget(title: 'Login'),
-            SizedBox(height: 20),
-            TextField(
-              controller: controllerEmail,
-              decoration: InputDecoration(
-                hintText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              onEditingComplete: () {
-                setState(() {});
-              },
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: controllerPassword,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              onEditingComplete: () {
-                setState(() {});
-              },
-            ),
-            SizedBox(height: 20),
-            FilledButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WidgetTree();
-                    },
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                HeroWidget(title: widget.title),
+                SizedBox(height: 20),
+                TextField(
+                  controller: controllerEmail,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
-                );
-              },
-              child: Text('Login'),
+                  onEditingComplete: () {
+                    setState(() {});
+                  },
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  controller: controllerPassword,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  onEditingComplete: () {
+                    setState(() {});
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    onLoginPressed();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 40),
+                  ),
+                  child: Text('Login'),
+                ),
+                SizedBox(height: 50),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void onLoginPressed() {
+    if (confirmedEmail == controllerEmail.text &&
+        confirmedPw == controllerPassword.text) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return WidgetTree();
+          },
+        ),
+      );
+    }
   }
 }
