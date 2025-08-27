@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 40),
                   ),
-                  child: Text('Login'),
+                  child: Text(widget.title),
                 ),
                 SizedBox(height: 50),
               ],
@@ -83,13 +83,14 @@ class _LoginPageState extends State<LoginPage> {
   void onLoginPressed() {
     if (confirmedEmail == controllerEmail.text &&
         confirmedPw == controllerPassword.text) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) {
             return WidgetTree();
           },
         ),
+        (route) => false,
       );
     }
   }

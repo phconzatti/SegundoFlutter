@@ -7,7 +7,9 @@ class KTextStyle {
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle descriptionText = TextStyle(
-    fontSize: 16,
-  );
+  static const TextStyle descriptionText = TextStyle(fontSize: 16);
+}
+
+class KConstants {
+  static const String themeModeKey = 'themeModeKey';
 }
