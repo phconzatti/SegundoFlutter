@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/widget_tree.dart';
-import 'package:flutter_application_1/views/widgets/hero_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
@@ -34,8 +33,6 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                HeroWidget(title: widget.title),
-                SizedBox(height: 20),
                 TextField(
                   controller: controllerEmail,
                   decoration: InputDecoration(

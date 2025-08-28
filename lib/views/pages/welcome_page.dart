@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/pages/login_page.dart';
+import 'package:flutter_application_1/views/pages/onboarding_page.dart';
 import 'package:flutter_application_1/views/widgets/hero_widget.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -15,7 +16,7 @@ class WelcomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                HeroWidget(title: 'Welcome',),
+                HeroWidget(title: 'Welcome'),
                 FittedBox(
                   child: Text(
                     "Flutter Mapp",
@@ -27,38 +28,38 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20.0),
-                FilledButton(onPressed: () {
-                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginPage(
-                          title: 'Register'
-                        );
-                      },
-                    ),
-                  );
-                }, 
-                style: FilledButton.styleFrom(
-                  minimumSize: Size(double.infinity, 40),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return OnboardingPage();
+                        },
+                      ),
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    minimumSize: Size(double.infinity, 40),
+                  ),
+                  child: Text('Get Started'),
                 ),
-                child: Text('Get Started')),
-                TextButton(onPressed: () {
-                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginPage(
-                          title: 'Login'
-                        );
-                      },
-                    ),
-                  );
-                }, 
-                style: FilledButton.styleFrom(
-                  minimumSize: Size(double.infinity, 40),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginPage(title: 'Login');
+                        },
+                      ),
+                    );
+                  },
+                  style: FilledButton.styleFrom(
+                    minimumSize: Size(double.infinity, 40),
+                  ),
+                  child: Text('Login'),
                 ),
-                child: Text('Login')),
               ],
             ),
           ),
