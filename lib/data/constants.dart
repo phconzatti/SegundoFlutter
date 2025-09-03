@@ -13,3 +13,10 @@ class KTextStyle {
 class KConstants {
   static const String themeModeKey = 'themeModeKey';
 }
+
+class KValue {
+  static const String basicLayout = "Basic Layout";
+  static const String cleanUi = "Clean UI";
+  static const String fixBugs = "Fix bugs";
+  static const String keyConcepts = "Key Concepts";
+}
