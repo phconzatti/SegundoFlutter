@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/pages/expanded_flexible_test_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key, required this.title});
@@ -45,11 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
                 child: Text('Open Snackbar'),
               ),
-              Divider(
-                color: Colors.teal,
-                thickness: 2,
-                endIndent: 200,
-              ),
+              Divider(color: Colors.teal, thickness: 2, endIndent: 200),
               ElevatedButton(
                 onPressed: () {
                   showDialog(
@@ -84,6 +81,19 @@ class _SettingsPageState extends State<SettingsPage> {
                     menuItem = value;
                   });
                 },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ExpandedFlexibleTestPage();
+                        },
+                      ),
+                    );
+                },
+                child: Text('Show Flexibe and Expanded'),
               ),
               TextField(
                 controller: controller,

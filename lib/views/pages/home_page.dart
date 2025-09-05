@@ -16,12 +16,14 @@ class HomePage extends StatelessWidget {
       KValue.fixBugs
     ];
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 10,),
             HeroWidget(title: 'Flutter Mapp', nextPage: CoursePage(),),
-            ...List.generate(5, (index) {
+            SizedBox(height: 5,),
+            ...List.generate(list.length, (index) {
               return ContainerWidget(
                 title: list.elementAt(index),
                 description: 'Description',
