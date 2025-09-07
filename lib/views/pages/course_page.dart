@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/classes/activity_class.dart';
 import 'package:flutter_application_1/views/widgets/hero_widget.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
@@ -17,13 +18,15 @@ class _CoursePageState extends State<CoursePage> {
     super.initState();
   }
 
-  void getData () async {
+  Future getData() async {
     var url = Uri.https('bored-api.appbrewery.com', '/random');
     var response = await http.get(url);
     if (response.statusCode == 200) {
-      var jsonResponse = convert.jsonDecode(response.body) as Map<String, dynamic>;
-      var itemCount = jsonResponse['activity'];
-      print(itemCount);
+      return Activity.fromJson(
+        convert.jsonDecode(response.body) as Map<String, dynamic>,
+      );
+    } else {
+      throw Exception('Failed to load album');
     }
   }
 
@@ -31,15 +34,24 @@ class _CoursePageState extends State<CoursePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              HeroWidget(title: 'Course Page'),            
-            ],
-          ),
-        ),
+      body: FutureBuilder(
+        future: getData(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+          if (snapshot.hasData) {
+            Activity activity = snapshot.data;
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(children: [HeroWidget(title: activity.activity), Text(activity.activity)]),
+              ),
+            );
+          } else {
+            return Center(child: Text('Error'));
+          }
+        },
       ),
     );
   }
